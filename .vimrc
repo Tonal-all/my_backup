@@ -8,15 +8,21 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-entire'
+Plugin 'kana/vim-textobj-line'
+Plugin 'kana/vim-textobj-indent'
 Plugin 'tpope/vim-surround'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'yggdroot/indentline'
 Plugin 'udalov/kotlin-vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'liuchengxu/vista.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+Plugin 'mileszs/ack.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
@@ -39,7 +45,7 @@ source  ~/.vim/vim_runtime/default.vim
 " source  ~/.vim/vim_runtime/fixtermkeys.vim
 packadd! matchit
 
-map <Space> <Leader>
+map s <Leader>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -257,6 +263,10 @@ let &t_TI = "\<Esc>[>4;2m"
 let &t_TE = "\<Esc>[>4;m"
 
 
+nnoremap <leader>v :<c-u>source ~/.vimrc<cr>
+
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
 "----------------------------------
 " plugin NERDTree
 "----------------------------------
@@ -305,6 +315,9 @@ syntax enable
 "----------------------------------------------------------------
 "coc
 "----------------------------------------------------------------
+
+
+
 source ~/.vim/vim_runtime/coc_cofigration.vim
 
 "----------------------------------------------------------------

@@ -122,4 +122,23 @@ export NVM_DIR="$HOME/.nvm"
 export NPC_HOME=/root/eil/ysyx-workbench/npc
 export GIT_EDITOR=vim
 
+export JDTLS_HOME=$HOME/.local/share/nvim/lsp/jdt-language-server/ 
+export WORKSPACE=$HOME/.local/share/nvim/lsp/jdt-language-server/workspace/
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/root/.local/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/root/.local/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/root/.local/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/root/.local/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
