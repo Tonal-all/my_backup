@@ -1,3 +1,9 @@
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_sidebar_width = 85
+let g:vimspector_bottombar_height = 15
+let g:vimspector_terminal_maxwidth = 70
+let g:winresizer_vert_resize = 1
+let g:winresizer_horiz_resize = 1
 map ; <Leader>
 set hidden
 set showcmd
@@ -74,7 +80,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme gruvbox
+    colorscheme gruvbox-material
     set termguicolors
     let g:gruvbox_italic=1
 catch
@@ -152,8 +158,8 @@ nmap <leader>w :w!<cr>
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+" vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+" vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 " Migrate <c-l> to <c-n> and add disable highlighting
 
@@ -203,3 +209,13 @@ nnoremap <M-l> :<C-u>tabnext<cr>
 nnoremap <silent> <Space>n :noh<cr><c-l>
 nnoremap <leader>v :<c-u>source ~/.config/nvim/init.vim<bar>AirlineRefresh<cr>
 map <C-q> <C-w>q
+
+vnoremap <M-l> :normal gvdp<cr>`[v`]
+vnoremap <M-h> :normal gvdhP<cr>`[v`]
+
+nmap <leader>ff <Plug>SnipRun
+nmap <leader>f <Plug>SnipRunOperator
+vmap  <leader>f <Plug>SnipRun
+
+
+

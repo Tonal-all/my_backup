@@ -17,6 +17,9 @@ null_ls.setup({
 		null_ls.builtins.formatting.perlimports,
 		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.formatting.xmlformat,
+		null_ls.builtins.formatting.eslint,
+
+        null_ls.builtins.code_actions.eslint_d,
 	},
 	debug = false,
 	on_attach = function(client)
@@ -25,6 +28,6 @@ null_ls.setup({
 		end
 	end,
 })
-vim.keymap.set("n", "<leader>f", function()
+vim.keymap.set("n", "<Space>f", function()
 	vim.lsp.buf.format({ async = true })
 end)

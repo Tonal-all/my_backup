@@ -31,8 +31,8 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-j>"] = cmp.mapping.select_prev_item(),
-		["<C-k>"] = cmp.mapping.select_next_item(),
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -57,6 +57,7 @@ cmp.setup({
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "snippy" }, -- For snippy users.
 		{ name = "buffer" },
 		{ name = "path" },
@@ -76,8 +77,20 @@ cmp.setup({
 		}),
 	},
 	view = {
-		entries = { name = "custom", selection_order = "near_cursor" },
+		entries = { name = "custom" },
 	},
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            require "cmp-under-comparator".under,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
+    },
 })
 
 -- Set configuration for specific filetype.
@@ -100,12 +113,29 @@ cmp.setup.cmdline({ "/", "?" }, {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
-		{ name = "cmdline" },
+		{
+			name = "cmdline",
+			keyword_pattern = [=[[^[:blank:]\!]*]=],
+            keyword_length=3,
+			option = {
+				ignore_cmds = { "Man", "!" },
+			},
+		},
 	}),
+	ignore_cmds = { "Man", "!" },
+	mapping = cmp.mapping.preset.cmdline({
+		["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item()),
+		["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item()),
+		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		["<C-e>"] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		}),
+	}),
+	view = { entries = { name = "custom", selection_order = "near_cursor" } },
 })
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local servers = {

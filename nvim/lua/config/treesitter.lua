@@ -13,11 +13,11 @@ require("nvim-treesitter.configs").setup({
 		"css",
 		"scss",
 		"yaml",
+        "rust",
 		"toml",
 		"vue",
 		"php",
 		"html",
-		"maintained",
 	},
 	-- ignore_install = { "html" },
 	highlight = {
