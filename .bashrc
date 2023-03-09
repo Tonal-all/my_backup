@@ -30,7 +30,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -40,12 +40,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -58,11 +58,11 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *)
+        ;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -106,14 +106,19 @@ fi
 #  source /usr/share/powerline/bindings/bash/powerline.sh
 #fi
 
+alias n='nvim'
+alias v='nvim'
+alias nv='nvim'
+alias vi='vim'
+alias zathura='zathura --mode=fullscreen'
+alias cdbk='cd /mnt/d/resource/book/'
 export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
 export http_proxy="http://${hostip}:10811"
 export https_proxy="http://${hostip}:10811"
-npm config set proxy $http_proxy
-npm config set https-proxy $http_proxy
-yarn config set proxy $http_proxy >> /dev/null 2>&1
-yarn config set https-proxy $http_proxy >> /dev/null 2>&1
 #export VIMRUNTIME="/usr/share/vim/vim90"
+
+echo -e "proxy=$http_proxy/\nhttps-proxy=$http_proxy/" > ~/.npmrc
+echo -e "proxy=$http_proxy/\nhttps-proxy=$http_proxy/" > ~/.yarnrc
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -122,7 +127,7 @@ export NVM_DIR="$HOME/.nvm"
 export NPC_HOME=/root/eil/ysyx-workbench/npc
 export GIT_EDITOR=vim
 
-export JDTLS_HOME=$HOME/.local/share/nvim/lsp/jdt-language-server/ 
+export JDTLS_HOME=$HOME/.local/share/nvim/lsp/jdt-language-server/
 export WORKSPACE=$HOME/.local/share/nvim/lsp/jdt-language-server/workspace/
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -141,4 +146,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
