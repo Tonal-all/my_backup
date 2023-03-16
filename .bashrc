@@ -115,7 +115,10 @@ alias cdbk='cd /mnt/d/resource/book/'
 export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
 export http_proxy="http://${hostip}:10811"
 export https_proxy="http://${hostip}:10811"
+export LANG=en_US.UTF-8
 #export VIMRUNTIME="/usr/share/vim/vim90"
+
+eval "$(oh-my-posh --init --shell bash --config /mnt/c/Users/17562/AppData/Local/Programs/oh-my-posh/themes/uew.omp.json)"
 
 echo -e "proxy=$http_proxy/\nhttps-proxy=$http_proxy/" > ~/.npmrc
 echo -e "proxy=$http_proxy/\nhttps-proxy=$http_proxy/" > ~/.yarnrc

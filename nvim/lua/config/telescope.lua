@@ -25,6 +25,7 @@ require("telescope").setup({
 		},
 	},
 })
+require('telescope').load_extension('dap')
 vim.keymap.set("n", "<c-f>", function()
 	builtin.find_files({
 		no_ignore = false,
@@ -32,14 +33,12 @@ vim.keymap.set("n", "<c-f>", function()
 	})
 end)
 
-vim.keymap.set("n", "<leader>r", function()
+vim.keymap.set("n", "<leader>l", function()
 	builtin.live_grep({
 		hidden = true,
 	})
 end)
 
-vim.keymap.set("n", "<M-f>", "<cmd>Telescope oldfiles<cr>")
-vim.keymap.set("n", "<M-f>", "<cmd>Telescope oldfiles<cr>")
 vim.keymap.set("n", "<M-f>", "<cmd>Telescope oldfiles<cr>")
 --vim.keymap.set('n', ',a', function()
 --    builtin.diagnostics()

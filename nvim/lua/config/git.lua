@@ -5,6 +5,3 @@ nnoremap <silent> <space>d :Gvdiffsplit<CR>
 nnoremap <silent> <space>r :Git log --graph<CR><C-w>T
 ]])
 
-require("telescope").load_extension("lazygit")
-require('gitsigns').setup()
-vim.cmd [[ autocmd BufEnter * :lua require('lazygit.utils').project_root_dir() ]]
