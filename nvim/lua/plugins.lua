@@ -15,6 +15,7 @@ return require("packer").startup(function(use)
     -- use({ "catppuccin/nvim", as = "catppuccin" })
     -- use('folke/which-key.nvim')
     use("sainnhe/gruvbox-material")
+    use("sainnhe/edge")
 
     use("kana/vim-textobj-user")
     use("kana/vim-textobj-entire")
@@ -84,8 +85,28 @@ return require("packer").startup(function(use)
         -- NOTE: splitjoin won't work with `BufRead` event
         event = "CursorHold",
     })
-    use("vim-airline/vim-airline")
-    use("vim-airline/vim-airline-themes")
+
+    -- use("vim-airline/vim-airline")
+    -- use("vim-airline/vim-airline-themes")
+    use({
+        "nvim-lualine/lualine.nvim",
+        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        config = function()
+            require("config.lualine")
+        end,
+        event = "BufRead",
+    })
+    -- using packer.nvim
+    use({
+        "akinsho/bufferline.nvim",
+        tag = "v3.*",
+        requires = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("config.bufferline")
+        end,
+        event = "BufRead",
+    })
+
     use({
         "folke/neoconf.nvim",
         config = function()
@@ -152,6 +173,12 @@ return require("packer").startup(function(use)
     })
     use({
         "chapel-lang/mason-registry",
+    })
+    use({
+        "j-hui/fidget.nvim",
+        config = function()
+            require("fidget").setup({})
+        end,
     })
     use({
         "mfussenegger/nvim-dap",
@@ -376,17 +403,24 @@ return require("packer").startup(function(use)
             require("config.toggleterm")
         end,
     })
-    use("liuchengxu/vim-clap")
+    -- use("liuchengxu/vim-clap")
     use("lewis6991/impatient.nvim")
     -- use("puremourning/vimspector")
     use("RRethy/vim-illuminate")
     use({
-        "glepnir/dashboard-nvim",
-        requires = { "nvim-tree/nvim-web-devicons" },
+        "goolord/alpha-nvim",
         config = function()
-            require("config.dashboard")
+            require("config.alpha")
         end,
     })
+    -- use({
+    --     "glepnir/dashboard-nvim",
+    --     event = "VimEnter",
+    --     requires = { "nvim-tree/nvim-web-devicons" },
+    --     config=function ()
+    --         require("config.dashboard")
+    --     end
+    -- })
     use({
         "norcalli/nvim-colorizer.lua",
         config = function()
@@ -401,6 +435,8 @@ return require("packer").startup(function(use)
         end,
         event = "CursorHold",
     })
+
+
     use({
         "michaelb/sniprun",
         run = "bash ./install.sh",
@@ -409,6 +445,14 @@ return require("packer").startup(function(use)
         end,
         event = "CursorHold",
     })
+        use({
+            "stevearc/overseer.nvim",
+            config = function()
+                require("overseer").setup()
+            end,
+        })
+
+
     use({
         "kevinhwang91/nvim-hlslens",
         config = function()
@@ -425,4 +469,8 @@ return require("packer").startup(function(use)
         event = "BufRead",
     })
     use("dstein64/vim-startuptime")
+    use("famiu/bufdelete.nvim")
+    use({
+        "ThePrimeagen/harpoon",
+    })
 end)

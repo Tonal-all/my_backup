@@ -112,6 +112,7 @@ alias nv='nvim'
 alias vi='vim'
 alias zathura='zathura --mode=fullscreen'
 alias cdbk='cd /mnt/d/resource/book/'
+# alias fortune='fortune 25% chinese 25% fortunes 25% tang300  25% song100'
 export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
 export http_proxy="http://${hostip}:10811"
 export https_proxy="http://${hostip}:10811"
@@ -149,3 +150,11 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+echo
+echo "--------------- Quote Of The Day ---------------"
+echo
+fortune
+echo
+echo "------------------------------------------------"
+echo

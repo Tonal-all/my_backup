@@ -26,6 +26,7 @@ require("telescope").setup({
 	},
 })
 require('telescope').load_extension('dap')
+require("telescope").load_extension('harpoon')
 vim.keymap.set("n", "<c-f>", function()
 	builtin.find_files({
 		no_ignore = false,
@@ -33,7 +34,7 @@ vim.keymap.set("n", "<c-f>", function()
 	})
 end)
 
-vim.keymap.set("n", "<leader>l", function()
+vim.keymap.set("n", "<M-r>", function()
 	builtin.live_grep({
 		hidden = true,
 	})

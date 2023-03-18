@@ -1,11 +1,19 @@
-let g:vimspector_enable_mappings = 'HUMAN'
-let g:vimspector_sidebar_width = 85
-let g:vimspector_bottombar_height = 15
-let g:vimspector_terminal_maxwidth = 70
+set laststatus=2  "永远显示状态栏
+set t_Co=256      "在windows中用xshell连接打开vim可以显示色彩
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:VM_set_statusline=0
+let g:VM_maps = {}
+let g:VM_leader = {'default': ',', 'visual': ',', 'buffer': ','}
+let g:VM_maps['Find Under']                  = '<C-s>'
+let g:VM_maps['Find Subword Under']          = '<C-s>'
+let g:VM_maps["Select All"]                  = '<M-s>'
+let g:VM_maps["Visual Cursors"]              = '<C-s>'
 let g:winresizer_vert_resize = 1
 let g:winresizer_horiz_resize = 1
 map ; <Leader>
 set hidden
+set updatetime=200
 set showcmd
 set noerrorbells
 set number
@@ -79,14 +87,24 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-try
-    colorscheme gruvbox-material
+if has('termguicolors')
     set termguicolors
-    let g:gruvbox_italic=1
-catch
-endtry
-
+endif
 set background=dark
+let g:gruvbox_italic=1
+
+
+let g:edge_style = 'neon'
+let g:edge_better_performance = 1
+let g:airline_theme = 'edge'
+colorscheme edge
+
+
+" let g:airline_theme='minimalist' " 'minimalist'
+" let g:gruvbox_material_background = 'soft'
+" let g:gruvbox_material_better_performance = 1
+" colorscheme gruvbox-material
+
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -175,8 +193,8 @@ map <leader>bd :<c-u>bd<cr>
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
+map <Space>l :bnext<cr>
+map <Space>h :bprevious<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -217,5 +235,9 @@ nmap <leader>ff <Plug>SnipRun
 nmap <leader>f <Plug>SnipRunOperator
 vmap  <leader>f <Plug>SnipRun
 
+nnoremap <silent> <leader>m :<c-u>lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent> <Space>m :<c-u>lua require("harpoon.ui").toggle_quick_menu()<CR>
 
+nnoremap <silent> <leader>l :<c-u>lua require("harpoon.ui").nav_next()<CR>
+nnoremap <silent> <leader>h :<c-u>lua require("harpoon.ui").nav_prev()<CR>
 
